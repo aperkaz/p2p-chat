@@ -1,6 +1,11 @@
 {
-  "name": "peer-to-peer_chat",
-  "version": "0.0.0",
+  "name": "p2p chat",
+  "version": "0.0.1",
+  "author": {
+    "email": "alainperkaz@gmail.com",
+    "name": "Alain Perkaz",
+    "url": "https://www.alainperkaz.com/"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
