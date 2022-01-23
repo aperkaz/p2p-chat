@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useMemo, createContext } from "react";
 
 import Peer, { DataConnection } from "peerjs";
-
+// TODONOW: add tests
 /**
  * The code is a number between 10000 and 99999
  */
@@ -22,7 +22,7 @@ const getId = (code?: number | string) =>
 
 type ContextType = {
   data: {
-    status: "disconnected" | "initialized" | "connected";
+    status: "disconnected" | "connected";
     code: number;
   };
   methods: {
@@ -117,11 +117,7 @@ export const PeerToPeerProvider = ({
   const value: ContextType = useMemo(
     () => ({
       data: {
-        status: peer
-          ? connection
-            ? "connected"
-            : "initialized"
-          : "disconnected",
+        status: connection ? "connected" : "disconnected",
         code,
       },
       methods: {
@@ -132,6 +128,10 @@ export const PeerToPeerProvider = ({
     }),
     [peer, connection, connect, disconnect, sendMessage]
   );
+
+  if (!peer) {
+    return <>connecting to P2P server</>;
+  }
 
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };
